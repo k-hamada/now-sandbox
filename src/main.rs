@@ -16,14 +16,15 @@ fn today() -> http::Result<Response<String>> {
 }
 
 fn not_found() -> http::Result<Response<String>> {
+    let usage = "\
+        USAGE\
+        \n    GET /<year>/<month>/<day>\
+        \n    GET /today\
+        \n    GET /json\
+    ";
     Response::builder()
         .status(StatusCode::OK)
-        .body("
-        USAGE
-            GET /<year>/<month>/<day>
-            GET /today
-            GET /json
-        ".to_string())
+        .body(usage.to_string())
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
